@@ -72,6 +72,7 @@ namespace Community.PowerToys.Run.Plugin.WebSearch
                 && IsDefaultBrowserSet())
             {
                 string arguments = "\"? \"";
+                Log.Info("[SearchPlugin-Ln86] " + _browserPath + " args: " + arguments, GetType());
                 results.Add(new Result
                 {
                     Title = Properties.Resources.plugin_description.Remove(Description.Length - 1, 1),
@@ -123,6 +124,7 @@ namespace Community.PowerToys.Run.Plugin.WebSearch
                     string arguments = $"\"? {searchTerm}\"";
 
                     result.ProgramArguments = arguments;
+                    Log.Info("[SearchPlugin-Ln128] " + _browserPath + " args: " + arguments, GetType());
                     result.Action = action =>
                     {
                         if (!Helper.OpenInShell(_browserPath, arguments))
@@ -142,7 +144,7 @@ namespace Community.PowerToys.Run.Plugin.WebSearch
                 else
                 {
                     string url = string.Format(CultureInfo.InvariantCulture, _searchEngineUrl, searchTerm);
-
+                    Log.Info("[SearchPlugin-Ln148] " + url.ToString(), GetType());
                     result.Action = action =>
                     {
                         if (!Helper.OpenInShell(url))
